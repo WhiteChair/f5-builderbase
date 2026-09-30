@@ -1,13 +1,9 @@
-@AGENTS.md
+@server/AGENTS.md
 
-# F5 - Builderbase (Tectonic Hackathon)
+# Kate Ahead (Tectonic Hackathon, KBC challenge, team F5)
 
-- `app/`, `public/`: the demo site (Next.js). Vercel project `f5-builderbase` (team `ds-projects-430c4cf4`) auto-deploys `main` to https://f5-builderbase.vercel.app. Keep the demo building: run `npm run lint` and `npm run build` before pushing.
-- `gcp/`: code that runs on Google Cloud (sponsor credits). Not built by Vercel; excluded from the root tsconfig.
-- `docs/hackathon/`: event rules and judging. The participants guide PDF is local only (gitignored); read it or `SUMMARY.md` for constraints.
-- `docs/pitch/`, `docs/DESIGN.md`: pitch outline, deck generator, and design tokens.
-- The repo is **public**: never commit secrets, keys, or the Google Cloud credit code. Use `.env.local`.
-- **Security counts for 10% of the hackathon score, graded via Aikido Security scans** (see `docs/hackathon/README.md`). Write code with that in mind: validate input, authenticate writes, no secrets in git, no vulnerable dependencies.
-- **Hackathon brief:** read `docs/hackathon/SUMMARY.md` before product decisions. **We're doing the KBC challenge:** a vision plus a working proof of concept for personalisation that scales to 2.3M+ customers (signals → situation and intent → experiences that adapt across products and channels). Judged on creativity, technical ability (does it work), fit, and security. Submission needs a demo video under 3 minutes, the public repo, Aikido before/after screenshots, and a README covering how to run it and what's unfinished. Code is frozen after submission.
-- `*.private.md` files are gitignored team notes (credentials, links); never commit their contents.
-- **Git workflow (fork + PRs):** `origin` is the fork `Mixone-FinallyHere/f5-builderbase` (connected to Aikido); `upstream` is `WhiteChair/f5-builderbase` (Vercel deploys its `main`, and its push URL is disabled locally). Work on a branch, push it to `origin`, open a PR into `upstream/main` (`gh pr create`, whose default repo is upstream). After merging, sync the fork: `gh repo sync Mixone-FinallyHere/f5-builderbase && git pull`. The **WhiteChair repo is what we submit**; Aikido scans the fork, so it must be synced before every scan.
+- This repo is the **submission**, in two parts: `server/` is the Next.js app = the engine + the **emulated agent** + the web UI, deployed by Vercel (Root Directory `server`) to https://f5-builderbase.vercel.app; `android/` is the phone app, a native Android app (Kotlin + Compose) wrapper that builds the APK and loads the server. Run `npm run lint` and `npm run build` inside `server/`.
+- Server layout: `app/` (pages, API routes), `components/` (the phone UI), `lib/engine/` (types, personas, watchers, gate, profile, skills, population), `lib/chat.ts` (the emulated agent: templated conversation, no live AI), `lib/session.ts` (signed cookie).
+- `docs/` and `private-notes/` are gitignored on purpose: research, plan, pitch script and event material live there for the team's Claude Project, never in the public repo.
+- The repo is **public** and scored by Aikido (10%): no secrets, validate inputs, keep the session-only identity model, keep the security headers.
+- Git workflow: `origin` is the fork `Mixone-FinallyHere/f5-builderbase` (Aikido scans it), `upstream` is `WhiteChair/f5-builderbase` (submitted, Vercel). Branch → push to origin → PR into upstream main → sync the fork.

@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "be.f5.kateahead",
+    "sha256_cert_fingerprints": ["03:BD:78:37:50:61:D1:E6:73:C2:42:F7:B5:1E:C5:4F:29:BB:58:3F:FF:8A:F0:3E:02:3A:E4:8D:A8:75:46:AA"]
+  }
+}]

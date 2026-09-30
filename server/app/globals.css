@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/* F5 - Builderbase design tokens (see docs/DESIGN.md) */
+@theme {
+  --color-bg: #07080c;
+  --color-surface: #10121a;
+  --color-surface-2: #171a25;
+  --color-border: #262a3a;
+  --color-primary: #7c5cff;
+  --color-secondary: #2de2c4;
+  --color-text: #f5f6fa;
+  --color-muted: #9aa0b4;
+  --color-success: #3ddc97;
+  --color-warn: #ffb020;
+  --color-danger: #ff5c7a;
+  --font-display: var(--font-space-grotesk), var(--font-emoji), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), var(--font-emoji), ui-sans-serif, system-ui, sans-serif;
+  --radius-card: 16px;
+}
+
+html { background: var(--color-bg); color-scheme: dark; }
+body {
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(124, 92, 255, 0.22), transparent 60%),
+    radial-gradient(700px 420px at 95% 0%, rgba(45, 226, 196, 0.12), transparent 60%),
+    var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--color-primary); color: white; }
+
+
+/* notification banner */
+@keyframes slide-down { from { transform: translateY(-140%); opacity: 0; } to { transform: none; opacity: 1; } }
+.notify { animation: slide-down 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes card-in { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+.card-in { animation: card-in 0.5s ease-out both; }
+@keyframes tap { 0% { transform: scale(1); } 40% { transform: scale(0.96); } 100% { transform: scale(1); } }
+.tap { animation: tap 0.4s ease-out; }
+@keyframes dots { 0% { content: ""; } 33% { content: "."; } 66% { content: ".."; } 100% { content: "..."; } }
+.dots::after { content: "…"; display: inline-block; width: 1.2em; animation: dots 1s steps(1, end) infinite; }
+@media (prefers-reduced-motion: reduce) { .notify, .card-in, .tap { animation: none; } }
+
+/* KBC Mobile look for the demo phone */
+.kbc-header { background: linear-gradient(135deg, #0091d2 0%, #00a9e0 100%); }
+.kate-avatar { background: linear-gradient(135deg, #00b4e6 0%, #6f3ff5 100%); box-shadow: 0 2px 8px rgba(0, 145, 210, 0.35); }
